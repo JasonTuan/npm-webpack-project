@@ -15,6 +15,11 @@ module.exports = {
     },
     entry: {
         app: './src/js/app.js',
+        app2: './src/ts/index.ts',
+    },
+    devtool: 'inline-source-map',
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
     },
     output: {
         filename: '[name].js',
@@ -76,6 +81,11 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+            {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loader: 'url-loader',
                 options: {
@@ -93,7 +103,7 @@ module.exports = {
             {
                 test: /.s?css$/,
                 use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-            },            
+            },
         ],
     }
 }
